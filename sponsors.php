@@ -3,97 +3,7 @@ $cols = 10;
 
 $sponsorList = [];
 $openCollectiveList = json_decode(file_get_contents("https://opencollective.com/uptime-kuma/members/all.json"));
-$githubSponsorList = githubSponsorList();
-//print_r($githubSponsorList);
-//die();
-
-function githubSponsorList() {
-    $authorization = "Authorization: Bearer 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";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://api.github.com/graphql");
-    
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json' ,
-        "User-Agent: uptime-kuma-website",
-        $authorization
-    ]);
-    
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    
-    $data = new stdClass();
-    $data->query = "
-{
-  viewer {
-    login
-    sponsors(first: 100) {
-      totalCount
-      nodes {
-        ... on User {
-          login
-          avatarUrl
-        }
-        ... on Organization {
-          login
-          avatarUrl
-        }
-      }
-    }
-  }
-}
-    ";
-    
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $result = curl_exec($ch);
-    curl_close($ch);
-    
-    $list = [];
-    
-     $tempList = json_decode($result)->data->viewer->sponsors->nodes;
-     
-    // Load GitHub money json: export from https://github.com/sponsors/louislam/dashboard/activity
-    $githubSponsorMoneyList = json_decode(file_get_contents("louislam-sponsorships-all-time.json"));
-    
-    foreach ($tempList as $item) {
-        $obj = new stdClass();
-        $obj->name = $item->login;
-        $obj->amount = 0;
-        
-        foreach ($githubSponsorMoneyList as $item2) {
-            
-            // Skip private
-            if (! $item2->is_public) {
-                continue;
-            }
-            
-            if ($item2->sponsor_handle === $item->login && count($item2->transactions) >= 1) {
-                $amount = floatval(substr($item2->transactions[0]->tier_monthly_amount, 1));
-                
-                $obj->amount = $amount;
-                
-                
-                
-                if ($item2->is_yearly && $item2->transactions[0]->tier_monthly_amount != $item2->transactions[0]->processed_amount) {
-                    $obj->amount = $obj->amount * 12;
-                }
-                
-                break;
-            }
-        }
-
-        $obj->currency = "USD";
-        $obj->image = $item->avatarUrl;
-        $obj->url = "https://github.com/$item->login";
-        
-        if ($obj->amount > 0) {
-            $list[] = $obj;
-        }
-      
-    }
-    
-    return $list;
-}
+$githubSponsorList = json_decode(file_get_contents("github-public-sponsors.json"));
 
 foreach ($openCollectiveList as $item) {
     $obj = new stdClass();
@@ -109,9 +19,7 @@ foreach ($openCollectiveList as $item) {
 }
 
 foreach ($githubSponsorList as $obj) {
-    if ($obj->amount > 0) {
-        $sponsorList[] = $obj;
-    }
+    $sponsorList[] = $obj;
 }
 
 usort($sponsorList, function ($a, $b) {
@@ -167,7 +75,7 @@ header("cache-control: max-age=7200, s-maxage=7200");
         $y = 0;
     ?>
     <?php foreach($sponsorList as $sponsor) : ?>
-        <a href="https://louislam.net" target="_blank">
+        <a href="<?=$sponsor->url ?>" target="_blank">
             <image width="100" height="100" x="<?=$x ?>" y="<?=$y ?>" href="<?=getImageData($sponsor->image) ?>" />
             <text x="<?=$x ?>" y="<?=$y + 105 ?>" clip-path="url(#clip<?=$col ?>)" dominant-baseline="hanging" text-anchor="start"><?=$sponsor->name ?></text>
             <text x="<?=$x ?>" y="<?=$y + 125 ?>" clip-path="url(#clip<?=$col ?>)" dominant-baseline="hanging" text-anchor="start"><?=$sponsor->currency ?> <?=$sponsor->amount ?></text>
