@@ -1,4 +1,6 @@
 <?php
+require_once "SimpleImage.php";
+
 $cols = 10;
 
 $sponsorList = [];
@@ -47,6 +49,12 @@ function getImageData($imageURL) {
         return file_get_contents("cache/$key");
     } else {
         $data = file_get_contents($imageURL);
+        
+        $simpleImage = new SimpleImage();
+        $simpleImage->load($data);
+        $simpleImage->resizeToWidth(90);
+        $data = $simpleImage->output();
+        
         $file_info = new finfo(FILEINFO_MIME_TYPE);
         $type = $file_info->buffer($data);
         
