@@ -511,5 +511,14 @@
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1147328?u=6d2e7f2e172ae92e008f3aaf570cd9192f874c55&v=4",
         "amount": 20,
         "is_public": true
+    },
+    {
+        "login": "yanranxiaoxi",
+        "url": "https:\/\/github.com\/yanranxiaoxi",
+        "name": "\u4e45\u6cbb\u660e\u5343\u6811\u6c50",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/10684000?u=d5b9b00c1adc1bd539ed6fe1519ffd7c38d6fe39&v=4",
+        "amount": 3,
+        "is_public": true
     }
 ]
