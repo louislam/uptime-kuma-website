@@ -1,0 +1,63 @@
+body {
+  font-family: BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+  font-size: 15px;
+  color: #F0F6FC;
+  text-align: center;
+  background-color: #090C10;
+}
+
+a {
+  text-decoration: none;
+  color: #F0F6FC;
+}
+a:hover {
+  color: #a5ada8;
+}
+
+.logo {
+  width: 150px;
+}
+
+h1 {
+  color: #F0F6FC;
+}
+
+.btn-primary {
+  background-color: #54DC8C;
+  border-color: #54DC8C;
+  border-radius: 50rem !important;
+  width: 150px;
+}
+.btn-primary:hover {
+  background-color: #46b474;
+  border-color: #46b474;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  gap: 14px;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+strong {
+  color: #54DC8C;
+}
+
+.cmd {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 50rem;
+  max-width: 80%;
+}
+
+/*# sourceMappingURL=app.css.map */

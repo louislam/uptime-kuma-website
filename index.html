@@ -3,33 +3,40 @@
 <head>
     <title>Uptime Kuma</title>
     <meta charset="UTF-8" />
-    <meta name="description" content="" />
+    <meta name="theme-color" content="#090C10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A self-hosted monitoring tool" />
+    <link rel="icon" type="image/svg+xml" href="/img/icon.svg" />
     <meta name="google-site-verification" content="dN_3ww4h_ShmISE82F-Qmr4MAliHmaGGEHRfuWgxM4E" />
-    <style>
-        body {font-size:15px; color:#777777; font-family:arial; text-align:center;}
-        h1 {font-size:64px; color:#555555; margin: 70px 0 30px 0;}
-        p {width:320px; text-align:center; margin-left:auto;margin-right:auto; }
-        div {width:320px; text-align:center; margin-left:auto;margin-right:auto;}
-        a:link {color: #34536A;}
-        a:visited {color: #34536A;}
-        a:active {color: #34536A;}
-        a:hover {color: #34536A;}
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
 </head>
 
 <body>
+
+    <img src="/img/icon.svg" alt="Uptime Kuma" class="logo mt-5 mb-3" />
+
     <h1>Uptime Kuma</h1>
 
     <div>
-        * Under construction, finding a beautiful landing page, lol.
+        A self-hosted monitoring tool
         <br /><br />
     </div>
 
-    <div>
-        <p><a href="https://demo.uptime.kuma.pet">Live Demo</a></p>
-        <p><a href="https://uptime.kuma.pet/docs/">Docs</a></p>
-        <p><a href="https://github.com/louislam/uptime-kuma">Github</a></p>
+    <div class="flex">
+        <a class="btn btn-primary" href="https://demo.uptime.kuma.pet">Live Demo</a>
+        <a class="btn btn-primary" href="https://uptime.kuma.pet/docs/">Docs</a>
     </div>
+
+    <div class="cmd mt-3">
+        docker run -d --restart=always -p <strong>3001</strong>:3001 -v <strong>uptime-kuma</strong>:/app/data --name <strong>uptime-kuma</strong> louislam/uptime-kuma:1
+    </div>
+
+    <div class="footer">
+        <a href="https://github.com/louislam/uptime-kuma">Github</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
