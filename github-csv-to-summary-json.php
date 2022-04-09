@@ -19,16 +19,16 @@ $list = [];
 
 foreach ($csvFile as $line) {
     $row = str_getcsv($line);
-    
+
     // Settled only
     if ($row[Status] !== "settled") {
         continue;
     }
-    
+
     if (!isset($list[$row[Login]])) {
         $obj = new stdClass();
-        
-        
+
+
         // If it is private, mark it as a guest
         if ($row[IsPublic] !== "true") {
             $obj->login = "hidden-" . substr(md5($row[Login]), 12, 24);
@@ -44,16 +44,16 @@ foreach ($csvFile as $line) {
             }
 
         }
-        
+
         $obj->currency = "USD";
         $obj->image = "";
         $obj->amount = 0;
         $obj->is_public = $row[IsPublic] === "true";
     }
-    
+
     // Offset 1, strip out dollar sign
     $obj->amount += substr($row[Amount], 1);
-    
+
     $list[$obj->login] = $obj;
 }
 
@@ -67,12 +67,22 @@ foreach ($list as $user) {
         if (empty($item)) {
             continue;
         }
-        
+
         if ($user->login === $item->login) {
             $user->image = $item->avatarUrl;
         }
     }
 }
+
+usort($list, function ($a, $b) {
+    if ($a->amount > $b->amount) {
+        return -1;
+    } else if ($a->amount < $b->amount) {
+        return 1;
+    } else {
+        return strcmp($a->login, $b->login);
+    }
+});
 
 file_put_contents("github-public-sponsors.json", json_encode($list, JSON_PRETTY_PRINT));
 
@@ -83,46 +93,46 @@ function getImages($list) {
     $authorization = "Authorization: Bearer " . $config->githubAPIToken;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://api.github.com/graphql");
-    
+
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-Type: application/json' ,
         "User-Agent: uptime-kuma-website",
         $authorization
     ]);
-    
+
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    
-    
+
+
     $query = "";
     $i = 1;
     foreach ($list as $user) {
         if ($user->is_public) {
-    
+
             $query .= "
              user$i: user(login: \"$user->login\") {
                  login
                  avatarUrl
             }
          ";
-            
+
             $i++;
         }
     }
-    
+
     if (empty($query)) {
         return [];
     }
-    
+
     $data = new stdClass();
     $data->query = "{ $query }";
-    
+
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
-    
+
     if ($result !== false) {
         $json = json_decode($result);
-        
+
         if (isset($json->data)) {
             $data = array_values((array) $json->data);
             return $data;
@@ -130,6 +140,6 @@ function getImages($list) {
     } else {
         echo curl_error($ch);
     }
-    
+
     curl_close($ch);
 }
