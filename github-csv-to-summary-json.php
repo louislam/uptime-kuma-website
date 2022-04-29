@@ -28,7 +28,6 @@ foreach ($csvFile as $line) {
     if (!isset($list[$row[Login]])) {
         $obj = new stdClass();
 
-
         // If it is private, mark it as a guest
         if ($row[IsPublic] !== "true") {
             $obj->login = "hidden-" . substr(md5($row[Login]), 12, 24);
@@ -52,7 +51,7 @@ foreach ($csvFile as $line) {
     }
 
     // Offset 1, strip out dollar sign
-    $obj->amount += substr($row[Amount], 1);
+    $obj->amount += floatval(substr($row[Amount], 1));
 
     $list[$obj->login] = $obj;
 }
@@ -75,12 +74,14 @@ foreach ($list as $user) {
 }
 
 usort($list, function ($a, $b) {
-    if ($a->amount > $b->amount) {
+    $cmp = strcmp($a->login, $b->login);
+
+    if ($cmp !== 0) {
+        return $cmp;
+    } else if ($a->amount > $b->amount) {
         return -1;
-    } else if ($a->amount < $b->amount) {
-        return 1;
     } else {
-        return strcmp($a->login, $b->login);
+        return 1;
     }
 });
 
