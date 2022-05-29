@@ -135,6 +135,15 @@
         "is_public": true
     },
     {
+        "login": "We-Manage",
+        "url": "https:\/\/github.com\/We-Manage",
+        "name": "we manage",
+        "currency": "USD",
+        "image": "",
+        "amount": 9.35,
+        "is_public": true
+    },
+    {
         "login": "adamsewell",
         "url": "https:\/\/github.com\/adamsewell",
         "name": "Adam Sewell",
