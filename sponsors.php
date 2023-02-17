@@ -7,14 +7,23 @@ $sponsorList = [];
 $openCollectiveList = json_decode(file_get_contents("https://opencollective.com/uptime-kuma/members/all.json"));
 $githubSponsorList = json_decode(file_get_contents("github-public-sponsors.json"));
 
+$uniqueList = [];
+
 foreach ($openCollectiveList as $item) {
+
+    if (array_key_exists($item->profile, $uniqueList)) {
+        continue;
+    } else {
+        $uniqueList[$item->profile] = true;
+    }
+
     $obj = new stdClass();
     $obj->name = $item->name;
     $obj->amount = $item->totalAmountDonated;
     $obj->currency = $item->currency;
     $obj->image = $item->image;
     $obj->url = $item->profile;
-    
+
     if ($obj->amount > 0) {
         $sponsorList[] = $obj;
     }
@@ -42,22 +51,22 @@ function getImageData($imageURL) {
     if ($imageURL == "") {
         $imageURL =  "https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon-192x192.png";
     }
-    
+
     $key = md5($imageURL) . sha1($imageURL);
-    
+
     if (file_exists("cache/$key")) {
         return file_get_contents("cache/$key");
     } else {
         $data = file_get_contents($imageURL);
-        
+
         $simpleImage = new SimpleImage();
         $simpleImage->load($data);
         $simpleImage->resizeToWidth(90);
         $data = $simpleImage->output();
-        
+
         $file_info = new finfo(FILEINFO_MIME_TYPE);
         $type = $file_info->buffer($data);
-        
+
         $data = 'data:' . $type . ';base64,' . base64_encode($data);
         file_put_contents("cache/$key", $data);
         return $data;
@@ -76,7 +85,7 @@ header("cache-control: max-age=7200, s-maxage=7200");
             opacity: 0.5;
         }
     </style>
-    
+
     <?php
         $col = 1;
         $x = 0;
