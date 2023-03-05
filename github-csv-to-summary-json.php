@@ -140,6 +140,7 @@ function getImages($list) {
         }
     } else {
         echo curl_error($ch);
+        throw new Exception("Failed to get image list from github api");
     }
 
     curl_close($ch);
