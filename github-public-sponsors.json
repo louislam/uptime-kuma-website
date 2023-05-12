@@ -50,7 +50,7 @@
         "name": "Archerious",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/26941475?u=2f08d0d63c5ccc8412af07669b89cb9290bf76d6&v=4",
-        "amount": 12,
+        "amount": 15,
         "is_public": true
     },
     {
@@ -104,7 +104,7 @@
         "name": "RogueThorn",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1261305?v=4",
-        "amount": 35,
+        "amount": 40,
         "is_public": true
     },
     {
@@ -158,7 +158,7 @@
         "name": "Jean-Loup MONNIER",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/11249128?u=eea767fd62e43f31d87372ed43eb456214cf53b4&v=4",
-        "amount": 41.72,
+        "amount": 46.72,
         "is_public": true
     },
     {
@@ -212,7 +212,7 @@
         "name": "Osco",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/9538468?u=d625eed077278719262367e0cd64a5b3bab87574&v=4",
-        "amount": 15.16,
+        "amount": 20.16,
         "is_public": true
     },
     {
@@ -252,6 +252,24 @@
         "is_public": true
     },
     {
+        "login": "Rustymage",
+        "url": "https:\/\/github.com\/Rustymage",
+        "name": "Anthony",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/19926955?u=326caced85025857ed93ad45c80e8f3027c2350e&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
+        "login": "ScrumpyJack",
+        "url": "https:\/\/github.com\/ScrumpyJack",
+        "name": "ScrumpyJack",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/3187469?u=1b33b055c832ccd6fa061deeb0c10e2f52a8758e&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
         "login": "ThomasChr",
         "url": "https:\/\/github.com\/ThomasChr",
         "name": "Thomas Christlieb",
@@ -284,7 +302,7 @@
         "name": "we manage",
         "currency": "USD",
         "image": "",
-        "amount": 109.35,
+        "amount": 119.35,
         "is_public": true
     },
     {
@@ -293,7 +311,7 @@
         "name": "WizardTales",
         "currency": "USD",
         "image": "",
-        "amount": 7.1,
+        "amount": 12.1,
         "is_public": true
     },
     {
@@ -302,7 +320,7 @@
         "name": "Adam Sewell",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/911426?v=4",
-        "amount": 85,
+        "amount": 90,
         "is_public": true
     },
     {
@@ -320,7 +338,7 @@
         "name": "Alexis Lefebvre",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/2071331?v=4",
-        "amount": 6.29,
+        "amount": 9.29,
         "is_public": true
     },
     {
@@ -329,7 +347,7 @@
         "name": "Alexandre Maurer",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/17186609?u=0fffb470942ae66880cc76c6a8a0395373bf394e&v=4",
-        "amount": 32,
+        "amount": 40,
         "is_public": true
     },
     {
@@ -356,7 +374,7 @@
         "name": "Markus Schicker",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/4519870?u=4f6874748a6d2f5446550db5629302b3e8d1870d&v=4",
-        "amount": 79.95,
+        "amount": 89.95,
         "is_public": true
     },
     {
@@ -419,7 +437,7 @@
         "name": "Vincent Neubauer",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/31095474?v=4",
-        "amount": 85,
+        "amount": 90,
         "is_public": true
     },
     {
@@ -689,7 +707,7 @@
         "name": "Iago S.",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/44407744?u=13d68316ffa925f34d075c7e1d8b425b7c8ba562&v=4",
-        "amount": 35,
+        "amount": 40,
         "is_public": true
     },
     {
@@ -797,7 +815,7 @@
         "name": "Michaela Krej\u010d\u00ed",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/7903442?u=7170b917080ef76bb7a3145e96864b3b3ad93567&v=4",
-        "amount": 35,
+        "amount": 40,
         "is_public": true
     },
     {
@@ -807,6 +825,15 @@
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1371562?u=8ee3afb4d4c34440c61c2f39981c0b02135d4bc9&v=4",
         "amount": 5,
+        "is_public": true
+    },
+    {
+        "login": "kumitterer",
+        "url": "https:\/\/github.com\/kumitterer",
+        "name": "Klaus-Uwe Mitterer",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/5702298?u=c25e19089a4105ddfa6afe5ff1680efeca1d6ef2&v=4",
+        "amount": 4.68,
         "is_public": true
     },
     {
@@ -833,7 +860,7 @@
         "name": "Patrick Lewis",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/4015312?u=fc796dc0036aab16db5fb093a1ecfef2979d0839&v=4",
-        "amount": 85,
+        "amount": 90,
         "is_public": true
     },
     {
@@ -842,7 +869,7 @@
         "name": "M\u00e1rio Garrido",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1191102?u=76ce10dcd1605927921700d5b58f5dfb7d5c72c5&v=4",
-        "amount": 9,
+        "amount": 12,
         "is_public": true
     },
     {
@@ -860,7 +887,7 @@
         "name": "mcdu77",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/110696377?v=4",
-        "amount": 18,
+        "amount": 21,
         "is_public": true
     },
     {
@@ -878,7 +905,7 @@
         "name": "monami-ya",
         "currency": "USD",
         "image": "",
-        "amount": 3.23,
+        "amount": 8.23,
         "is_public": true
     },
     {
@@ -967,7 +994,7 @@
         "url": "https:\/\/github.com\/rossedlin",
         "name": "Ross Edlin",
         "currency": "USD",
-        "image": "https:\/\/avatars.githubusercontent.com\/u\/1790657?u=d9eefdb3b9751617bedc7b11f3111242f125f01c&v=4",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/1790657?u=9807aa70915cb5fb1ae97f5ccce8b31e6ed1cad7&v=4",
         "amount": 5,
         "is_public": true
     },
@@ -1037,7 +1064,7 @@
     {
         "login": "seadog007",
         "url": "https:\/\/github.com\/seadog007",
-        "name": "\u5c24\u7406\u8861",
+        "name": "\u5c24\u7406\u8861 (Li-Heng Yu)",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/5138409?u=ba4b05d87877c0fbc54718455f00fb8d9eada59e&v=4",
         "amount": 5,
@@ -1085,7 +1112,7 @@
         "name": "Dan Brown",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/8343178?u=302dbe5fc3afcfaca0ee100ecfae961621899cb9&v=4",
-        "amount": 25.94,
+        "amount": 31.94,
         "is_public": true
     },
     {
@@ -1103,7 +1130,7 @@
         "name": "SYMVARO",
         "currency": "USD",
         "image": "",
-        "amount": 140,
+        "amount": 160,
         "is_public": true
     },
     {
@@ -1211,7 +1238,7 @@
         "name": "xuancanh",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/5238293?v=4",
-        "amount": 37.26,
+        "amount": 42.26,
         "is_public": true
     },
     {
@@ -1229,7 +1256,7 @@
         "name": "Zero Attack Vector LLC",
         "currency": "USD",
         "image": "",
-        "amount": 38.23,
+        "amount": 43.23,
         "is_public": true
     },
     {
@@ -1238,7 +1265,7 @@
         "name": "Alex",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/24614929?u=7987ba7ca6b7241d1790dc4549b4e7b0cea84a27&v=4",
-        "amount": 35.16,
+        "amount": 40.16,
         "is_public": true
     }
 ]
