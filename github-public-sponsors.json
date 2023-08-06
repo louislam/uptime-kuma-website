@@ -18,6 +18,15 @@
         "is_public": true
     },
     {
+        "login": "Ali-Razmjoo",
+        "url": "https:\/\/github.com\/Ali-Razmjoo",
+        "name": "Ali Razmjoo",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/7676267?u=345e0b69bae7359ac98e46c642b9a1257b5b6cfc&v=4",
+        "amount": 2.74,
+        "is_public": true
+    },
+    {
         "login": "Amanah-Corp",
         "url": "https:\/\/github.com\/Amanah-Corp",
         "name": "Amanah Corp.",
@@ -104,7 +113,7 @@
         "name": "RogueThorn",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1261305?v=4",
-        "amount": 50,
+        "amount": 55,
         "is_public": true
     },
     {
@@ -167,7 +176,7 @@
         "name": "Jean-Loup MONNIER",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/11249128?u=eea767fd62e43f31d87372ed43eb456214cf53b4&v=4",
-        "amount": 56.72,
+        "amount": 61.72,
         "is_public": true
     },
     {
@@ -261,6 +270,15 @@
         "is_public": true
     },
     {
+        "login": "RobertCSternberg",
+        "url": "https:\/\/github.com\/RobertCSternberg",
+        "name": "Robert Sternberg",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/136265104?u=b648f48d8f9349027ace9f9ef25ed4b90822c737&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
         "login": "Rustymage",
         "url": "https:\/\/github.com\/Rustymage",
         "name": "Anthony",
@@ -275,7 +293,7 @@
         "name": "ScrumpyJack",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/3187469?u=1b33b055c832ccd6fa061deeb0c10e2f52a8758e&v=4",
-        "amount": 15,
+        "amount": 20,
         "is_public": true
     },
     {
@@ -311,7 +329,7 @@
         "name": "we manage",
         "currency": "USD",
         "image": "",
-        "amount": 139.35,
+        "amount": 149.35,
         "is_public": true
     },
     {
@@ -320,7 +338,7 @@
         "name": "WizardTales",
         "currency": "USD",
         "image": "",
-        "amount": 22.1,
+        "amount": 27.1,
         "is_public": true
     },
     {
@@ -338,7 +356,7 @@
         "name": "Adam Sewell",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/911426?v=4",
-        "amount": 100,
+        "amount": 105,
         "is_public": true
     },
     {
@@ -356,7 +374,7 @@
         "name": "Alexis Lefebvre",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/2071331?v=4",
-        "amount": 15.29,
+        "amount": 18.29,
         "is_public": true
     },
     {
@@ -810,6 +828,15 @@
         "is_public": true
     },
     {
+        "login": "jfcabral",
+        "url": "https:\/\/github.com\/jfcabral",
+        "name": "Jo\u00e3o Francisco Almeida",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/1048422?u=969eb4c847cf47f5ac05bfa4d34de86aa4f357d6&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
         "login": "jharohit",
         "url": "https:\/\/github.com\/jharohit",
         "name": "Rohit Jha",
@@ -950,7 +977,7 @@
         "name": "M\u00e1rio Garrido",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1191102?u=76ce10dcd1605927921700d5b58f5dfb7d5c72c5&v=4",
-        "amount": 18,
+        "amount": 21,
         "is_public": true
     },
     {
@@ -995,7 +1022,7 @@
         "name": "monami-ya",
         "currency": "USD",
         "image": "",
-        "amount": 18.23,
+        "amount": 23.23,
         "is_public": true
     },
     {
@@ -1149,6 +1176,15 @@
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/16230494?v=4",
         "amount": 5,
+        "is_public": true
+    },
+    {
+        "login": "schultz-p",
+        "url": "https:\/\/github.com\/schultz-p",
+        "name": "Paul Schultz",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/45921290?v=4",
+        "amount": 4.84,
         "is_public": true
     },
     {
@@ -1355,7 +1391,7 @@
         "name": "Zero Attack Vector LLC",
         "currency": "USD",
         "image": "",
-        "amount": 53.23,
+        "amount": 58.23,
         "is_public": true
     },
     {
