@@ -6,38 +6,65 @@
  * php github-csv-to-summary-json.php
  */
 
-const Login = 0;
-const Name = 1;
-const PublicEmail = 2;
-const IsPublic = 4;
-const Amount = 9;
-const Status = 11;
+$Login = -1;
+$Name = -1;
+$PublicEmail = -1;
+$IsPublic = -1;
+$Amount = -1;
+$Status = -1;
 
 $csvFile = file("louislam-sponsorships-all-time.csv");
 
 $list = [];
 
+echo "Total lines in csv: " . count($csvFile) . "\n";
+
+$isFirst = true;
 foreach ($csvFile as $line) {
     $row = str_getcsv($line);
 
-    // Settled only
-    if ($row[Status] !== "settled") {
+    //
+    if ($isFirst) {
+
+        for ($i = 0; $i < count($row); $i++) {
+            if ($row[$i] === "Sponsor Handle") {
+                $Login = $i;
+            } else if ($row[$i] === "Sponsor Profile Name") {
+                $Name = $i;
+            } else if ($row[$i] === "Sponsor Public Email") {
+                $PublicEmail = $i;
+            } else if ($row[$i] === "Is Public?") {
+                $IsPublic = $i;
+            } else if ($row[$i] === "Processed Amount") {
+                $Amount = $i;
+            } else if ($row[$i] === "Status") {
+                $Status = $i;
+            }
+        }
+
+        $isFirst = false;
         continue;
     }
 
-    if (!isset($list[$row[Login]])) {
+    // Settled only
+    if ($row[$Status] !== "settled") {
+        echo "Skip row because not settled: " . $row[$Status] . "\n";
+        continue;
+    }
+
+    if (!isset($list[$row[$Login]])) {
         $obj = new stdClass();
 
         // If it is private, mark it as a guest
-        if ($row[IsPublic] !== "true") {
-            $obj->login = "hidden-" . substr(md5($row[Login]), 12, 24);
+        if ($row[$IsPublic] !== "true") {
+            $obj->login = "hidden-" . substr(md5($row[$Login]), 12, 24);
             $obj->url = "https://github.com/louislam/uptime-kuma";
             $obj->name = "Guest";
         } else {
-            $obj->login = $row[Login];
+            $obj->login = $row[$Login];
             $obj->url = "https://github.com/$obj->login";
-            if (!empty($row[Name])) {
-                $obj->name = $row[Name];
+            if (!empty($row[$Name])) {
+                $obj->name = $row[$Name];
             } else {
                 $obj->name = $obj->login;
             }
@@ -47,16 +74,18 @@ foreach ($csvFile as $line) {
         $obj->currency = "USD";
         $obj->image = "";
         $obj->amount = 0;
-        $obj->is_public = $row[IsPublic] === "true";
+        $obj->is_public = $row[$IsPublic] === "true";
     }
 
     // Offset 1, strip out dollar sign
-    $obj->amount += floatval(substr($row[Amount], 1));
+    $obj->amount += floatval(substr($row[$Amount], 1));
 
     $list[$obj->login] = $obj;
 }
 
 $list = array_values($list);
+
+echo "Total row in list: " . count($list) . "\n";
 
 // Get profile pic url from github api
 $imageList = getImages($list);
