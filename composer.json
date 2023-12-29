@@ -1,0 +1,22 @@
+{
+    "require": {
+        "gammadia/slim-2.x": "^2.6",
+        "league/plates": "^3.5",
+        "vlucas/phpdotenv": "^5.6",
+        "phpseclib/phpseclib": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "UptimeKuma\\" : "src/UptimeKuma"
+        }
+    },
+    "scripts": {
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "docker compose -f compose-dev.yaml up --force-recreate"
+        ],
+        "deploy": "php ./deploy.php",
+        "csv-to-json": "php ./github-csv-to-summary-json.php",
+        "install-dependencies": "docker compose exec uptime-kuma-website composer install"
+    }
+}

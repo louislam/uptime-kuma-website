@@ -1,10 +1,14 @@
 <?php
-
-
 /*
  * How to run:
  * php github-csv-to-summary-json.php
  */
+
+require "./vendor/autoload.php";
+
+// Read .env file
+$dotenv = Dotenv\Dotenv::createImmutable("./");
+$dotenv->safeLoad();
 
 $Login = -1;
 $Name = -1;
@@ -116,11 +120,11 @@ usort($list, function ($a, $b) {
 
 file_put_contents("github-public-sponsors.json", json_encode($list, JSON_PRETTY_PRINT));
 
+echo "Done\n";
 
 
 function getImages($list) {
-    $config = include("config.php");
-    $authorization = "Authorization: Bearer " . $config->githubAPIToken;
+    $authorization = "Authorization: Bearer " . $_ENV["GITHUB_API_TOKEN"];
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://api.github.com/graphql");
 

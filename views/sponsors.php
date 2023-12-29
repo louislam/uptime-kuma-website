@@ -1,11 +1,11 @@
 <?php
-require_once "SimpleImage.php";
+use UptimeKuma\SimpleImage;
 
 $cols = 10;
 
 $sponsorList = [];
 $openCollectiveList = json_decode(file_get_contents("https://opencollective.com/uptime-kuma/members/all.json"));
-$githubSponsorList = json_decode(file_get_contents("github-public-sponsors.json"));
+$githubSponsorList = json_decode(file_get_contents("../github-public-sponsors.json"));
 
 $uniqueList = [];
 
@@ -37,7 +37,7 @@ usort($sponsorList, function ($a, $b) {
     if ($a->amount === $b->amount) {
         return strcmp($a->name, $b->name);
     }
-    return $a->amount < $b->amount;
+    return  $b->amount - $a->amount;
 });
 
 $itemWidth = 120;
@@ -54,8 +54,8 @@ function getImageData($imageURL) {
 
     $key = md5($imageURL) . sha1($imageURL);
 
-    if (file_exists("cache/$key")) {
-        return file_get_contents("cache/$key");
+    if (file_exists("../cache/$key")) {
+        return file_get_contents("../cache/$key");
     } else {
         $data = file_get_contents($imageURL);
 
@@ -68,7 +68,7 @@ function getImageData($imageURL) {
         $type = $file_info->buffer($data);
 
         $data = 'data:' . $type . ';base64,' . base64_encode($data);
-        file_put_contents("cache/$key", $data);
+        file_put_contents("../cache/$key", $data);
         return $data;
     }
 }

@@ -1,5 +1,10 @@
 /.idea
-/libs/
 louislam-sponsorships-all-time.json
 louislam-sponsorships-all-time.csv
 config.php
+*.css.map
+/vendor
+/private
+/cache
+!/cache/.gitkeep
+.env
