@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 /*
 * File: SimpleImage.php
 * Author: Simon Jarvis
@@ -20,54 +19,57 @@
 *
 */
 
+namespace UptimeKuma;
+
+use GdImage;
+
 class SimpleImage {
-    
-    var $image;
-    var $image_type;
-    
-    function load($data) {
+
+    protected GdImage $image;
+
+    function load($data) : void {
         $this->image = imagecreatefromstring($data);
     }
 
     function output() {
         $stream = fopen("php://memory", "w+");
-        //imagepng($this->image, $stream);
+
         imagejpeg($this->image, $stream, 75);
         rewind($stream);
         return stream_get_contents($stream);
     }
-    
-    function getWidth() {
+
+    function getWidth() : int {
         return imagesx($this->image);
     }
-    
-    function getHeight() {
+
+    function getHeight() : int {
         return imagesy($this->image);
     }
-    
-    function resizeToHeight($height) {
-        $ratio = $height / $this->getHeight();
+
+    function resizeToHeight(int $height) : void {
+        $ratio = (float) $height / $this->getHeight();
         $width = $this->getWidth() * $ratio;
-        $this->resize($width,$height);
+        $this->resize(intval($width),$height);
     }
-    
-    function resizeToWidth($width) {
-        $ratio = $width / $this->getWidth();
+
+    function resizeToWidth(int $width) : void {
+        $ratio = (float) $width / $this->getWidth();
         $height = $this->getheight() * $ratio;
-        $this->resize($width,$height);
+        $this->resize($width, intval($height));
     }
-    
-    function scale($scale) {
+
+    function scale($scale) : void {
         $width = $this->getWidth() * $scale/100;
         $height = $this->getheight() * $scale/100;
-        $this->resize($width,$height);
+        $this->resize($width, $height);
     }
-    
-    function resize($width,$height) {
+
+    function resize(int $width, int $height) : void {
         $new_image = imagecreatetruecolor($width, $height);
         imagefill($new_image, 0, 0, imagecolorallocate($new_image, 255, 255, 255));  // white background;
         imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
         $this->image = $new_image;
     }
-    
+
 }

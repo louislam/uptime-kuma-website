@@ -1,0 +1,17 @@
+services:
+  website:
+    image: php:8.1-apache
+    restart: unless-stopped
+    ports:
+      - 5002:80
+    volumes:
+      - ./:/var/www/
+    command: >
+      bash -c " \
+      apt update -y && apt install -y libpng-dev libjpeg-dev && \
+      docker-php-ext-configure gd  --with-jpeg && \
+      docker-php-ext-install gd && \
+      a2enmod rewrite remoteip && \
+      curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+      apache2-foreground \
+      "

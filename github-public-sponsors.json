@@ -310,8 +310,8 @@
         "url": "https:\/\/github.com\/RobertCSternberg",
         "name": "Robert Sternberg",
         "currency": "USD",
-        "image": "https:\/\/avatars.githubusercontent.com\/u\/136265104?u=b648f48d8f9349027ace9f9ef25ed4b90822c737&v=4",
-        "amount": 25,
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/136265104?u=d9274002deaab3c67cb506c328677f8a515449f7&v=4",
+        "amount": 30,
         "is_public": true
     },
     {
@@ -617,6 +617,15 @@
         "name": "disappointingsupernova",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/24361971?u=39782abe2617789801c8ace9efbd16835c631342&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
+        "login": "djamn",
+        "url": "https:\/\/github.com\/djamn",
+        "name": "djamn",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/87384392?u=c69d4e44af4878a0645979829934a4bb61ce0fad&v=4",
         "amount": 5,
         "is_public": true
     },
@@ -1724,7 +1733,7 @@
         "name": "Zero Attack Vector LLC",
         "currency": "USD",
         "image": "",
-        "amount": 78.23,
+        "amount": 83.23,
         "is_public": true
     },
     {
