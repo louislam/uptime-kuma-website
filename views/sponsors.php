@@ -72,9 +72,6 @@ function getImageData($imageURL) {
         return $data;
     }
 }
-
-header('Content-type: image/svg+xml');
-header("cache-control: max-age=7200, s-maxage=7200");
 ?><svg xmlns="http://www.w3.org/2000/svg" width="<?=$totalWidth ?>" height="<?=$totalHeight ?>">
     <style>
         a {

@@ -32,7 +32,7 @@ cd $workingDir
 ls -la
 git fetch --all
 git checkout origin/master --force
-docker compose exec uptime-kuma-website composer install
+docker compose exec website composer install
 ");
 
 $ssh->disconnect();

@@ -14,6 +14,8 @@ $app->get("/version", function () use ($plates, $app) {
 });
 
 $app->get("/sponsors", function () use ($plates, $app) {
+    $app->response()->header("Content-Type", "image/svg+xml");
+    $app->response()->header("cache-control", "max-age=7200, s-maxage=7200");
     echo $plates->render("sponsors");
 });
 
