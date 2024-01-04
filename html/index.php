@@ -19,4 +19,11 @@ $app->get("/sponsors", function () use ($plates, $app) {
     echo $plates->render("sponsors");
 });
 
+$docs = function () use ($plates, $app) {
+    $app->response()->header("Location", "https://github.com/louislam/uptime-kuma/wiki");
+};
+
+$app->get("/docs", $docs);
+$app->get("/docs/:any+", $docs);
+
 $app->run();
