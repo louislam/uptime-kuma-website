@@ -24,7 +24,7 @@
 </div>
 
 <div class="flex">
-    <a class="btn btn-primary" href="https://demo.uptime.kuma.pet">Live Demo</a>
+    <a class="btn btn-primary" href="https://demo.kuma.pet/start-demo">Live Demo</a>
     <a class="btn btn-primary" href="https://github.com/louislam/uptime-kuma/wiki">Docs</a>
 </div>
 
