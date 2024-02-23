@@ -11,6 +11,11 @@ $uniqueList = [];
 
 foreach ($openCollectiveList as $item) {
 
+    // Should be just a follower
+    if ($item->totalAmountDonated === 0) {
+        continue;
+    }
+
     if (array_key_exists($item->profile, $uniqueList)) {
         continue;
     } else {
@@ -23,6 +28,7 @@ foreach ($openCollectiveList as $item) {
     $obj->currency = $item->currency;
     $obj->image = $item->image;
     $obj->url = $item->profile;
+
 
     if ($obj->amount > 0) {
         $sponsorList[] = $obj;
