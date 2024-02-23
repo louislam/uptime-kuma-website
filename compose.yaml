@@ -1,19 +1,9 @@
 services:
   website:
-    image: php:8.1-apache
+    build: .
     restart: unless-stopped
-    working_dir: /var/www
     volumes:
       - ./:/var/www/
-    command: >
-      bash -c " \
-      apt update -y && apt install -y libpng-dev libjpeg-dev libzip-dev libonig-dev && \
-      docker-php-ext-configure gd  --with-jpeg && \
-      docker-php-ext-install zip gd && \
-      a2enmod rewrite remoteip && \
-      curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-      apache2-foreground \
-      "
   cloudflared:
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
