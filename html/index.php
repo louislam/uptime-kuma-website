@@ -2,6 +2,8 @@
 require "../vendor/autoload.php";
 
 $app = new Slim\Slim();
+$app->config("debug", getenv("DEV") === "1");
+
 $plates = new League\Plates\Engine("../views");
 
 $app->get("/", function () use ($plates) {

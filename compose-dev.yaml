@@ -2,6 +2,8 @@ services:
   website:
     image: php:8.1-apache
     restart: unless-stopped
+    environment:
+      - DEV=1
     ports:
       - 5002:80
     volumes:
