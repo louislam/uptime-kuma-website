@@ -58,9 +58,10 @@ strong {
 
 .cmd {
     margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.20);
-    padding: 10px 20px;
+    background-color: rgba(56, 103, 78, 0.4);
+    padding: 1rem 1.25rem;
     display: inline-block;
-    border-radius: 50rem;
-    max-width: 80%;
+    border-radius: 0.75rem;
+    width: clamp(248px, 75%, 900px);
+    border: 2px solid #54DC8C;
 }
