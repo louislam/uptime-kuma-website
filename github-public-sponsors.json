@@ -293,7 +293,7 @@
         "name": "KEINOS",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/11840938?u=e915b35bd36abfdcbbaaa6fbe5ea0c6e8ee51e70&v=4",
-        "amount": 82.58,
+        "amount": 87.58,
         "is_public": true
     },
     {
@@ -744,6 +744,15 @@
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/1102092?u=f8dcef8d4d873ceba31789b9e81b1accc23dc677&v=4",
         "amount": 21,
+        "is_public": true
+    },
+    {
+        "login": "aman207",
+        "url": "https:\/\/github.com\/aman207",
+        "name": "anonion",
+        "currency": "USD",
+        "image": "https:\/\/avatars.githubusercontent.com\/u\/3377153?v=4",
+        "amount": 15,
         "is_public": true
     },
     {
@@ -1265,7 +1274,7 @@
         "name": "frankdez93",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/87549420?v=4",
-        "amount": 54,
+        "amount": 57,
         "is_public": true
     },
     {
@@ -1494,6 +1503,15 @@
         "is_public": false
     },
     {
+        "login": "hidden-9d2eb369c3a878794d98",
+        "url": "https:\/\/github.com\/louislam\/uptime-kuma",
+        "name": "Guest",
+        "currency": "USD",
+        "image": "",
+        "amount": 50,
+        "is_public": false
+    },
+    {
         "login": "hidden-a05a3ffb1a2696105dd5",
         "url": "https:\/\/github.com\/louislam\/uptime-kuma",
         "name": "Guest",
@@ -1643,7 +1661,7 @@
         "name": "HTTP Toolkit",
         "currency": "USD",
         "image": "",
-        "amount": 160,
+        "amount": 180,
         "is_public": true
     },
     {
@@ -2669,7 +2687,7 @@
         "name": "t2psp",
         "currency": "USD",
         "image": "https:\/\/avatars.githubusercontent.com\/u\/170826667?u=067ed0e6df3f6051c682842c6ff6b09adfcf222d&v=4",
-        "amount": 3.87,
+        "amount": 6.87,
         "is_public": true
     },
     {
