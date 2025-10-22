@@ -29,7 +29,7 @@
 </div>
 
 <div class="cmd mt-3">
-    docker run -d --restart=always -p <strong>3001</strong>:3001 -v <strong>uptime-kuma</strong>:/app/data --name <strong>uptime-kuma</strong> louislam/uptime-kuma:1
+    docker run -d --restart=always -p <strong>3001</strong>:3001 -v <strong>uptime-kuma</strong>:/app/data --name <strong>uptime-kuma</strong> louislam/uptime-kuma:2
 </div>
 
 <div class="footer">
