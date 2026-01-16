@@ -35,7 +35,7 @@ jobs:
           fi
 
           # Find latest stable version (non-prerelease, non-draft)
-          SLOW_VERSION=$(echo "$RELEASES" | jq -r \
+          LATEST_VERSION=$(echo "$RELEASES" | jq -r \
             '[.[] | select(.prerelease == false and .draft == false)] |
             .[0].tag_name // empty')
 
@@ -45,7 +45,7 @@ jobs:
             .[0].tag_name // empty')
 
           # Validate versions
-          if [ -z "$SLOW_VERSION" ] || [ "$SLOW_VERSION" = "null" ]; then
+          if [ -z "$LATEST_VERSION" ] || [ "$LATEST_VERSION" = "null" ]; then
             echo "Error: Could not find a stable release"
             exit 1
           fi
@@ -55,25 +55,25 @@ jobs:
             BETA_VERSION=$(jq -r '.beta' version.json)
           fi
 
-          echo "slow_version=$SLOW_VERSION" >> $GITHUB_OUTPUT
+          echo "latest_version=$LATEST_VERSION" >> $GITHUB_OUTPUT
           echo "beta_version=$BETA_VERSION" >> $GITHUB_OUTPUT
 
-          echo "Found versions - Slow: $SLOW_VERSION, Beta: $BETA_VERSION"
+          echo "Found versions - Latest: $LATEST_VERSION, Beta: $BETA_VERSION"
 
       - name: Update version.json
         id: update-version
         run: |
           # Read current version.json
-          CURRENT_SLOW=$(jq -r '.slow' version.json)
+          CURRENT_LATEST=$(jq -r '.latest' version.json)
           CURRENT_BETA=$(jq -r '.beta' version.json)
 
           # Get new versions from previous step
-          NEW_SLOW="${{ steps.fetch-versions.outputs.slow_version }}"
+          NEW_LATEST="${{ steps.fetch-versions.outputs.latest_version }}"
           NEW_BETA="${{ steps.fetch-versions.outputs.beta_version }}"
 
           # Validate versions before updating
-          if [ -z "$NEW_SLOW" ] || [ "$NEW_SLOW" = "null" ]; then
-            echo "Error: Invalid slow version"
+          if [ -z "$NEW_LATEST" ] || [ "$NEW_LATEST" = "null" ]; then
+            echo "Error: Invalid latest version"
             exit 1
           fi
 
@@ -82,12 +82,12 @@ jobs:
             exit 1
           fi
 
-          echo "Current versions - Slow: $CURRENT_SLOW, Beta: $CURRENT_BETA"
-          echo "New versions - Slow: $NEW_SLOW, Beta: $NEW_BETA"
+          echo "Current versions - Latest: $CURRENT_LATEST, Beta: $CURRENT_BETA"
+          echo "New versions - Latest: $NEW_LATEST, Beta: $NEW_BETA"
 
-          # Update version.json using jq (only slow and beta, not latest)
-          jq --arg slow "$NEW_SLOW" --arg beta "$NEW_BETA" \
-            '.slow = $slow | .beta = $beta' \
+          # Update version.json using jq (only latest and beta, not slow)
+          jq --arg latest "$NEW_LATEST" --arg beta "$NEW_BETA" \
+            '.latest = $latest | .beta = $beta' \
             version.json > version.json.tmp
 
           mv version.json.tmp version.json
@@ -108,5 +108,5 @@ jobs:
           git config --global user.email \
             "github-actions[bot]@users.noreply.github.com"
           git add version.json
-          git commit -m "Update slow and beta versions"
+          git commit -m "Update latest and beta versions"
           git push
