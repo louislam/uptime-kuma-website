@@ -1,0 +1,80 @@
+---
+name: Update Version
+
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch versions from uptime-kuma
+        id: fetch-versions
+        run: |
+          # Fetch releases from GitHub API
+          RELEASES=$(curl -s \
+            https://api.github.com/repos/louislam/uptime-kuma/releases)
+
+          # Find latest stable version (non-prerelease, non-draft)
+          SLOW_VERSION=$(echo "$RELEASES" | jq -r \
+            '[.[] | select(.prerelease == false and .draft == false)] |
+            .[0].tag_name')
+
+          # Find latest beta version (prerelease)
+          BETA_VERSION=$(echo "$RELEASES" | jq -r \
+            '[.[] | select(.prerelease == true and .draft == false)] |
+            .[0].tag_name')
+
+          echo "slow_version=$SLOW_VERSION" >> $GITHUB_OUTPUT
+          echo "beta_version=$BETA_VERSION" >> $GITHUB_OUTPUT
+
+          echo "Found versions - Slow: $SLOW_VERSION, Beta: $BETA_VERSION"
+
+      - name: Update version.json
+        id: update-version
+        run: |
+          # Read current version.json
+          CURRENT_SLOW=$(jq -r '.slow' version.json)
+          CURRENT_BETA=$(jq -r '.beta' version.json)
+
+          # Get new versions from previous step
+          NEW_SLOW="${{ steps.fetch-versions.outputs.slow_version }}"
+          NEW_BETA="${{ steps.fetch-versions.outputs.beta_version }}"
+
+          echo "Current versions - Slow: $CURRENT_SLOW, Beta: $CURRENT_BETA"
+          echo "New versions - Slow: $NEW_SLOW, Beta: $NEW_BETA"
+
+          # Update version.json using jq (only slow and beta, not latest)
+          jq --arg slow "$NEW_SLOW" --arg beta "$NEW_BETA" \
+            '.slow = $slow | .beta = $beta' \
+            version.json > version.json.tmp
+
+          mv version.json.tmp version.json
+
+          # Check if there are changes
+          if git diff --quiet version.json; then
+            echo "No changes to version.json"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "version.json has been updated"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.update-version.outputs.has_changes == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email \
+            "github-actions[bot]@users.noreply.github.com"
+          git add version.json
+          git commit -m "Update slow and beta versions"
+          git push
