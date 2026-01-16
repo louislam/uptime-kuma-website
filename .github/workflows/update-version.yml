@@ -20,19 +20,40 @@ jobs:
       - name: Fetch versions from uptime-kuma
         id: fetch-versions
         run: |
-          # Fetch releases from GitHub API
+          # Fetch releases from GitHub API with authentication
           RELEASES=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/louislam/uptime-kuma/releases)
+
+          # Check if API request was successful
+          if [ -z "$RELEASES" ] || \
+             echo "$RELEASES" | jq -e . >/dev/null 2>&1; then
+            :
+          else
+            echo "Error: Failed to fetch releases from GitHub API"
+            exit 1
+          fi
 
           # Find latest stable version (non-prerelease, non-draft)
           SLOW_VERSION=$(echo "$RELEASES" | jq -r \
             '[.[] | select(.prerelease == false and .draft == false)] |
-            .[0].tag_name')
+            .[0].tag_name // empty')
 
           # Find latest beta version (prerelease)
           BETA_VERSION=$(echo "$RELEASES" | jq -r \
             '[.[] | select(.prerelease == true and .draft == false)] |
-            .[0].tag_name')
+            .[0].tag_name // empty')
+
+          # Validate versions
+          if [ -z "$SLOW_VERSION" ] || [ "$SLOW_VERSION" = "null" ]; then
+            echo "Error: Could not find a stable release"
+            exit 1
+          fi
+
+          if [ -z "$BETA_VERSION" ] || [ "$BETA_VERSION" = "null" ]; then
+            echo "Warning: No beta release found, using current beta version"
+            BETA_VERSION=$(jq -r '.beta' version.json)
+          fi
 
           echo "slow_version=$SLOW_VERSION" >> $GITHUB_OUTPUT
           echo "beta_version=$BETA_VERSION" >> $GITHUB_OUTPUT
@@ -49,6 +70,17 @@ jobs:
           # Get new versions from previous step
           NEW_SLOW="${{ steps.fetch-versions.outputs.slow_version }}"
           NEW_BETA="${{ steps.fetch-versions.outputs.beta_version }}"
+
+          # Validate versions before updating
+          if [ -z "$NEW_SLOW" ] || [ "$NEW_SLOW" = "null" ]; then
+            echo "Error: Invalid slow version"
+            exit 1
+          fi
+
+          if [ -z "$NEW_BETA" ] || [ "$NEW_BETA" = "null" ]; then
+            echo "Error: Invalid beta version"
+            exit 1
+          fi
 
           echo "Current versions - Slow: $CURRENT_SLOW, Beta: $CURRENT_BETA"
           echo "New versions - Slow: $NEW_SLOW, Beta: $NEW_BETA"
