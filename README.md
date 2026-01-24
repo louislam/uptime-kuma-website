@@ -54,3 +54,18 @@ Alternatively, you can run the following command to update the source code and d
 ```bash
 composer run-script deploy
 ```
+
+## Update Sponsors JSON
+
+Since GitHub API does not provide a way to get all all data. We have to download the csv file manually and convert it to JSON.
+
+1. Go to https://github.com/sponsors/louislam/dashboard/your_sponsors
+2. `Export`
+3. `All time`
+4. `CSV`
+5. `Start export`
+6. Check your email and download the CSV file.
+7. Place the CSV in the root folder.
+8. `php github-csv-to-summary-json.php`
+9. Commit and push the changes.
+10. Deploy to production.
