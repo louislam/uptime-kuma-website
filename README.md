@@ -66,6 +66,6 @@ Since GitHub API does not provide a way to get all all data. We have to download
 5. `Start export`
 6. Check your email and download the CSV file.
 7. Place the CSV in the root folder.
-8. `php github-csv-to-summary-json.php`
+8. `deno task sponsors-to-json`
 9. Commit and push the changes.
 10. Deploy to production.

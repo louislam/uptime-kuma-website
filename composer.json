@@ -16,7 +16,6 @@
             "docker compose -f compose-dev.yaml up --force-recreate"
         ],
         "deploy": "php ./deploy.php",
-        "csv-to-json": "php ./github-csv-to-summary-json.php",
         "install-dependencies": "docker compose exec website composer install"
     }
 }
