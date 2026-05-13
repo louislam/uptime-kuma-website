@@ -106,7 +106,7 @@ for (const user of result) {
 }
 
 result.sort((a, b) => {
-    const cmp = a.login.toLowerCase().localeCompare(b.login.toLowerCase());
+    const cmp = a.login.localeCompare(b.login);
     if (cmp !== 0) return cmp;
     return a.amount > b.amount ? -1 : 1;
 });
