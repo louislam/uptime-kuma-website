@@ -221,7 +221,7 @@
         "name": "Nevin Lyne",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/33272935?u=b6271f93c2cdeee0b0b5ed8f3eed1484a254c034&v=4",
-        "amount": 525,
+        "amount": 550,
         "is_public": true
     },
     {
@@ -468,8 +468,8 @@
         "is_public": true
     },
     {
-        "login": "chxseh",
-        "url": "https://github.com/chxseh",
+        "login": "chsedotsh",
+        "url": "https://github.com/chsedotsh",
         "name": "Chase",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/13722939?u=e7206cfb8e97b23888b2a67a8405de1f8e203c07&v=4",
@@ -2129,7 +2129,7 @@
         "name": "MosziNet",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/554499?u=12e54031baa313dd0e12f80f9e839c9dbce3c4fe&v=4",
-        "amount": 70,
+        "amount": 75,
         "is_public": true
     },
     {
@@ -2732,7 +2732,7 @@
         "name": "SimpleX Chat",
         "currency": "USD",
         "image": "",
-        "amount": 161.61,
+        "amount": 171.61,
         "is_public": true
     },
     {
@@ -2741,7 +2741,7 @@
         "name": "SKORI",
         "currency": "USD",
         "image": "",
-        "amount": 42,
+        "amount": 45,
         "is_public": true
     },
     {
@@ -2840,7 +2840,7 @@
         "name": "stefanux",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/20359913?u=63f45a5cdf5ee2d549cb71bc8ec03081a7da0362&v=4",
-        "amount": 547.57,
+        "amount": 567.57,
         "is_public": true
     },
     {
