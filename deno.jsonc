@@ -1,7 +1,19 @@
 {
     "lock": false,
+    "nodeModulesDir": "none",
 
     "tasks": {
+        // Backend (Deno + Hono)
+        "start": "deno run --allow-all server.ts",
+        "dev": "deno run --allow-all --watch server.ts",
+        "check": "deno check server.ts sponsors-to-json.ts",
+
+        // Frontend (Vite+, runs on Node by design)
+        "install-frontend": "npm --prefix frontend install",
+        "build": "npm --prefix frontend run build",
+        "dev-frontend": "npm --prefix frontend run dev",
+
+        // Utilities
         "sponsors-to-json": "deno run --allow-all --env-file sponsors-to-json.ts"
     },
 

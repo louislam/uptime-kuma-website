@@ -1,6 +1,5 @@
 import { parse } from "jsr:@std/csv@1.0.6";
-import { crypto } from "jsr:@std/crypto@1.1.0";
-import { encodeHex } from "jsr:@std/encoding@1.0.10/hex";
+import { createHash } from "node:crypto";
 
 let Login = -1;
 let Name = -1;
@@ -115,11 +114,9 @@ Deno.writeTextFileSync("github-public-sponsors.json", JSON.stringify(result, nul
 
 console.log("Done");
 
-
 async function md5Hex(input: string): Promise<string> {
-    const encoder = new TextEncoder();
-    const hashBuffer = await crypto.subtle.digest("MD5", encoder.encode(input));
-    return encodeHex(new Uint8Array(hashBuffer));
+    // Deno's WebCrypto does not support MD5; node:crypto does.
+    return createHash("md5").update(input).digest("hex");
 }
 
 async function getImages(list: Sponsor[]): Promise<Array<{ login: string; avatarUrl: string }>> {
