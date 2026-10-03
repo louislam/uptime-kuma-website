@@ -5,7 +5,9 @@ services:
     environment:
       - PORT=80
     volumes:
-      - ./:/app
+      # Persist the sponsor avatar cache only. Mounting the whole repo would
+      # shadow the frontend dist/ that is built into the image.
+      - ./cache:/app/cache
   cloudflared:
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
