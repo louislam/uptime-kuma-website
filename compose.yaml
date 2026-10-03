@@ -2,8 +2,10 @@ services:
   website:
     build: .
     restart: unless-stopped
+    environment:
+      - PORT=80
     volumes:
-      - ./:/var/www/
+      - ./:/app
   cloudflared:
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
