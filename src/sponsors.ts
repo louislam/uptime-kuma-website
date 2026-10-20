@@ -3,9 +3,9 @@
 // Port of views/sponsors.php + src/UptimeKuma/SimpleImage.php.
 //  - OpenCollective members are fetched live (same as PHP file_get_contents).
 //  - GitHub sponsors are read from github-public-sponsors.json.
-//  - Avatars are resized to width 90 and encoded as JPEG quality 75 (GD's imagejpeg).
-//  - Results are cached as `data:image/jpeg;base64,...` strings under ./cache,
-//    mirroring PHP's md5(url) . sha1(url) cache key.
+//  - Avatars are resized to width 80 and encoded as WebP quality 70.
+//  - Results are cached as `data:image/webp;base64,...` strings under ./cache,
+//    keyed by a cache version plus md5(url) + sha1(url).
 
 import sharp from "sharp";
 import { createHash } from "node:crypto";
@@ -30,7 +30,8 @@ interface OpenCollectiveMember {
 const COLS = 10;
 const ITEM_WIDTH = 120;
 const ITEM_HEIGHT = 140;
-const AVATAR_WIDTH = 90;
+const AVATAR_WIDTH = 80;
+const CACHE_VERSION = "v2";
 const CACHE_DIR = process.env.CACHE_DIR ?? "./cache";
 const SPONSORS_JSON = process.env.SPONSORS_JSON ?? "./github-public-sponsors.json";
 const FALLBACK_IMAGE = "https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon-192x192.png";
@@ -49,7 +50,7 @@ function byteCompare(a: string, b: string): number {
 }
 
 function cacheKey(url: string): string {
-    return createHash("md5").update(url).digest("hex") + createHash("sha1").update(url).digest("hex");
+    return CACHE_VERSION + createHash("md5").update(url).digest("hex") + createHash("sha1").update(url).digest("hex");
 }
 
 async function getImageData(imageURL: string): Promise<string> {
@@ -69,12 +70,12 @@ async function getImageData(imageURL: string): Promise<string> {
         throw new Error(`Failed to fetch sponsor image ${imageURL}: ${res.status} ${res.statusText}`);
     }
 
-    const jpeg = await sharp(new Uint8Array(await res.arrayBuffer()))
+    const webp = await sharp(new Uint8Array(await res.arrayBuffer()))
         .resize({ width: AVATAR_WIDTH })
-        .jpeg({ quality: 75 })
+        .webp({ quality: 70 })
         .toBuffer();
 
-    const data = `data:image/jpeg;base64,${jpeg.toBase64()}`;
+    const data = `data:image/webp;base64,${webp.toBase64()}`;
     await mkdir(CACHE_DIR, { recursive: true });
     await writeFile(cachePath, data, "utf8");
     return data;
