@@ -35,6 +35,15 @@ h1 {
     }
 }
 
+// Bootstrap's own .btn-primary:focus paints the button blue (#0b5ed7) with a
+// blue ring (rgba(49, 132, 253, .5)). Keep it green while focused instead.
+.btn.btn-primary:focus,
+.btn.btn-primary:focus-visible {
+    background-color: #46b474;
+    border-color: #46b474;
+    box-shadow: 0 0 0 0.25rem rgba(84, 220, 140, 0.5);
+}
+
 .flex {
     display: flex;
     justify-content: center;
