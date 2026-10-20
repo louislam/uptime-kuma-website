@@ -13,7 +13,8 @@
         "install-frontend": "npm --prefix frontend install",
         "dev-frontend": "npm --prefix frontend run dev",
         "csv-to-json": "node --env-file-if-exists=.env scripts/csv-to-json.ts",
-        "sponsors:json": "node --env-file-if-exists=.env scripts/fetch-sponsors.ts"
+        "sponsors:json": "node --env-file-if-exists=.env scripts/fetch-sponsors.ts",
+        "sponsors:svg": "node --env-file-if-exists=.env scripts/generate-sponsors-svg.ts"
     },
     "dependencies": {
         "@hono/node-server": "^1.19.5",
