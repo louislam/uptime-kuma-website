@@ -1,5 +1,5 @@
 # ---- Stage 1: build the frontend with Vite+ (Node-based) ----
-FROM node:24-bookworm-slim AS frontend
+FROM node:26-trixie-slim AS frontend
 
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
@@ -8,19 +8,21 @@ COPY frontend/ ./
 # Emits /app/dist
 RUN npm run build
 
-# ---- Stage 2: Deno runtime serving the built site ----
-FROM denoland/deno:2.9.7
+# ---- Stage 2: Node runtime serving the built site ----
+FROM node:26-trixie-slim
 
 WORKDIR /app
 
-COPY deno.jsonc server.ts ./
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY server.ts version.json github-public-sponsors.json ./
 COPY src/ ./src/
-COPY version.json github-public-sponsors.json ./
-RUN mkdir -p cache && deno cache server.ts
+RUN mkdir -p cache
 
 COPY --from=frontend /app/dist ./dist
 
 ENV PORT=80
 EXPOSE 80
 
-CMD ["deno", "run", "--allow-all", "server.ts"]
+CMD ["node", "server.ts"]

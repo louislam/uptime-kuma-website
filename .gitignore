@@ -1,6 +1,7 @@
 /.idea
 louislam-sponsorships-all-time.json
 louislam-sponsorships-all-time.csv
+github-public-sponsors - ground truth.json
 config.php
 *.css.map
 /private

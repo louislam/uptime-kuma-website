@@ -1,9 +1,11 @@
-import { Hono } from "jsr:@hono/hono@4";
-import { serveStatic } from "jsr:@hono/hono@4/deno";
+import { Hono } from "hono";
+import { serveStatic } from "@hono/node-server/serve-static";
+import { serve } from "@hono/node-server";
+import { readFile } from "node:fs/promises";
 import { renderSponsorsSvg } from "./src/sponsors.ts";
 
-const PORT = Number(Deno.env.get("PORT") ?? 8000);
-const DIST = Deno.env.get("DIST_DIR") ?? "./dist";
+const PORT = Number(process.env.PORT ?? 8000);
+const DIST = process.env.DIST_DIR ?? "./dist";
 const WIKI = "https://github.com/louislam/uptime-kuma/wiki";
 
 const app = new Hono();
@@ -11,15 +13,15 @@ const app = new Hono();
 // Home page. Built by Vite+ (see frontend/) into ./dist/index.html.
 app.get("/", async (c) => {
     try {
-        return c.html(await Deno.readTextFile(`${DIST}/index.html`));
+        return c.html(await readFile(`${DIST}/index.html`, "utf8"));
     } catch {
-        return c.text("Frontend not built yet. Run `npm --prefix frontend run build`.", 503);
+        return c.text("Frontend not built yet. Run `npm run build`.", 503);
     }
 });
 
 // Latest / slow / beta versions.
 app.get("/version", async (c) => {
-    const raw = await Deno.readTextFile("./version.json");
+    const raw = await readFile("./version.json", "utf8");
     return c.body(raw, 200, { "content-type": "application/json" });
 });
 
@@ -36,4 +38,6 @@ app.get("/docs/*", (c) => c.redirect(WIKI, 302));
 // Static assets: Vite+ build output (hashed assets) + frontend/public/ copies.
 app.use("*", serveStatic({ root: DIST }));
 
-Deno.serve({ port: PORT }, app.fetch);
+serve({ fetch: app.fetch, port: PORT }, (info) => {
+    console.log(`Listening on http://localhost:${info.port}`);
+});

@@ -1,2 +1,8 @@
+node_modules
 frontend/node_modules
+dist
+cache
+.git
+.idea
 .env
+github-public-sponsors - ground truth.json

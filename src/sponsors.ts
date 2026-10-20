@@ -7,8 +7,9 @@
 //  - Results are cached as `data:image/jpeg;base64,...` strings under ./cache,
 //    mirroring PHP's md5(url) . sha1(url) cache key.
 
-import sharp from "npm:sharp@0.35.5";
+import sharp from "sharp";
 import { createHash } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 interface Sponsor {
     name: string;
@@ -30,8 +31,8 @@ const COLS = 10;
 const ITEM_WIDTH = 120;
 const ITEM_HEIGHT = 140;
 const AVATAR_WIDTH = 90;
-const CACHE_DIR = Deno.env.get("CACHE_DIR") ?? "./cache";
-const SPONSORS_JSON = Deno.env.get("SPONSORS_JSON") ?? "./github-public-sponsors.json";
+const CACHE_DIR = process.env.CACHE_DIR ?? "./cache";
+const SPONSORS_JSON = process.env.SPONSORS_JSON ?? "./github-public-sponsors.json";
 const FALLBACK_IMAGE = "https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon-192x192.png";
 
 function escapeXml(value: unknown): string {
@@ -58,7 +59,7 @@ async function getImageData(imageURL: string): Promise<string> {
 
     const cachePath = `${CACHE_DIR}/${cacheKey(imageURL)}`;
     try {
-        return await Deno.readTextFile(cachePath);
+        return await readFile(cachePath, "utf8");
     } catch {
         // cache miss
     }
@@ -74,7 +75,8 @@ async function getImageData(imageURL: string): Promise<string> {
         .toBuffer();
 
     const data = `data:image/jpeg;base64,${jpeg.toBase64()}`;
-    await Deno.writeTextFile(cachePath, data);
+    await mkdir(CACHE_DIR, { recursive: true });
+    await writeFile(cachePath, data, "utf8");
     return data;
 }
 
@@ -103,7 +105,7 @@ async function buildSponsorList(): Promise<Sponsor[]> {
         }
     }
 
-    const github = JSON.parse(await Deno.readTextFile(SPONSORS_JSON)) as Sponsor[];
+    const github = JSON.parse(await readFile(SPONSORS_JSON, "utf8")) as Sponsor[];
     list.push(...github);
 
     list.sort((a, b) => {

@@ -1,5 +1,6 @@
-import { parse } from "jsr:@std/csv@1.0.6";
+import { parse } from "csv-parse/sync";
 import { createHash } from "node:crypto";
+import { readFileSync, writeFileSync } from "node:fs";
 
 let Login = -1;
 let Name = -1;
@@ -18,12 +19,10 @@ interface Sponsor {
     is_public: boolean;
 }
 
-const decoder = new TextDecoder("utf-8");
-const data = Deno.readFileSync("louislam-sponsorships-all-time.csv");
-const csvContent = decoder.decode(data);
+const csvContent = readFileSync("louislam-sponsorships-all-time.csv", "utf8");
 
 // Parse CSV properly (handles quoted fields)
-const rows = parse(csvContent, { skipFirstRow: false });
+const rows = parse(csvContent, { bom: true, relax_column_count: true }) as string[][];
 
 console.log(`Total lines in csv: ${rows.length}`);
 
@@ -49,8 +48,9 @@ for (const row of rows) {
         continue;
     }
 
-    // Settled only
-    if (row[Status] !== "settled") {
+    // Settled only. `credit_balance_adjusted` is a successful charge paid from
+    // the sponsor's GitHub credit / invoice balance, not a refund.
+    if (row[Status] !== "settled" && row[Status] !== "credit_balance_adjusted") {
         console.log(`Skip row because not settled: ${row[Status]}`);
         continue;
     }
@@ -70,7 +70,7 @@ for (const row of rows) {
 
         // If it is private, mark it as a guest
         if (row[IsPublic] !== "true") {
-            const hash = await md5Hex(loginKey);
+            const hash = md5Hex(loginKey);
             obj.login = "hidden-" + hash.substring(12, 12 + 24);
             obj.url = "https://github.com/louislam/uptime-kuma";
             obj.name = "Guest";
@@ -110,17 +110,16 @@ result.sort((a, b) => {
     return a.amount > b.amount ? -1 : 1;
 });
 
-Deno.writeTextFileSync("github-public-sponsors.json", JSON.stringify(result, null, 4));
+writeFileSync("github-public-sponsors.json", JSON.stringify(result, null, 4));
 
 console.log("Done");
 
-async function md5Hex(input: string): Promise<string> {
-    // Deno's WebCrypto does not support MD5; node:crypto does.
+function md5Hex(input: string): string {
     return createHash("md5").update(input).digest("hex");
 }
 
 async function getImages(list: Sponsor[]): Promise<Array<{ login: string; avatarUrl: string }>> {
-    const token = Deno.env.get("GITHUB_API_TOKEN");
+    const token = process.env.GITHUB_API_TOKEN;
     if (!token) {
         throw new Error("GITHUB_API_TOKEN is not set in environment / .env file");
     }
@@ -157,10 +156,13 @@ async function getImages(list: Sponsor[]): Promise<Array<{ login: string; avatar
         throw new Error(`Failed to get image list from GitHub API: ${response.status} ${response.statusText}`);
     }
 
-    const json = await response.json();
+    const json = await response.json() as {
+        data?: Record<string, { login: string; avatarUrl: string }>;
+        errors?: unknown;
+    };
 
     if (json.data) {
-        return Object.values(json.data) as Array<{ login: string; avatarUrl: string }>;
+        return Object.values(json.data);
     }
 
     throw new Error(`Failed to get image list from GitHub API: ${JSON.stringify(json)}`);
