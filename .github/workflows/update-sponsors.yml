@@ -26,6 +26,13 @@ jobs:
           node-version: 26
           cache: npm
 
+      - uses: actions/cache@v6
+        with:
+          path: cache
+          key: sponsors-avatar-cache-${{ github.run_id }}
+          restore-keys: |
+            sponsors-avatar-cache-
+
       - run: npm ci
 
       - name: Rebuild sponsors JSON
@@ -33,15 +40,18 @@ jobs:
           GITHUB_API_TOKEN: ${{ secrets.SPONSORS_TOKEN }}
         run: npm run sponsors:json -- --merge github-public-sponsors.json
 
+      - name: Render sponsors SVG
+        run: npm run sponsors:svg
+
       - name: Commit if changed
         run: |
-          if git diff --quiet -- github-public-sponsors.json; then
+          if git diff --quiet -- github-public-sponsors.json sponsors.svg; then
             echo "No changes, nothing to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add github-public-sponsors.json
+          git add github-public-sponsors.json sponsors.svg
           git commit -m "Update sponsors"
           git push
