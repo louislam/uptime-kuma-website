@@ -1,4 +1,4 @@
-import { Hono, type Context } from "hono";
+import { Hono } from "hono";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { serve } from "@hono/node-server";
 import { readFile } from "node:fs/promises";
@@ -45,13 +45,6 @@ app.get("/sponsors", async (c) => {
         return c.text("Sponsors SVG unavailable", 502);
     }
 });
-
-// Docs redirects to the wiki.
-const docsRedirect = (c: Context) => {
-    return c.redirect("https://github.com/louislam/uptime-kuma/wiki", 302);
-};
-app.get("/docs", docsRedirect);
-app.get("/docs/*", docsRedirect);
 
 // Static assets: Vite+ build output (hashed assets) + frontend/public/ copies.
 app.use("*", serveStatic({ root: "./dist" }));
