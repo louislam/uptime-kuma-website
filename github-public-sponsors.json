@@ -194,7 +194,7 @@
         "name": "Appica",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/13656276?v=4",
-        "amount": 90,
+        "amount": 120,
         "is_public": true
     },
     {
@@ -652,7 +652,7 @@
         "url": "https://github.com/dharsanb",
         "name": "Dharsan Baskar",
         "currency": "USD",
-        "image": "https://avatars.githubusercontent.com/u/52737410?v=4",
+        "image": "https://avatars.githubusercontent.com/u/52737410?u=e3d81123d9e10f51aaf05a36824b5a3d28853699&v=4",
         "amount": 25,
         "is_public": true
     },
@@ -2201,7 +2201,7 @@
         "name": "Monami-ya LLC, Japan",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/4535778?v=4",
-        "amount": 213.23,
+        "amount": 218.23,
         "is_public": true
     },
     {
