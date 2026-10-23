@@ -1678,7 +1678,7 @@
         "url": "https://github.com/Justinzobel",
         "name": "Justin Zobel",
         "currency": "USD",
-        "image": "https://avatars.githubusercontent.com/u/1370117?v=4",
+        "image": "https://avatars.githubusercontent.com/u/1370117?u=4711e05b61230ae8fd3c58be710e1add827e397c&v=4",
         "amount": 10,
         "is_public": true
     },
@@ -1984,7 +1984,7 @@
         "url": "https://github.com/lumper5",
         "name": "lumper5",
         "currency": "USD",
-        "image": "https://avatars.githubusercontent.com/u/5123031?v=4",
+        "image": "https://avatars.githubusercontent.com/u/5123031?u=9226366d9952561a9769c80afeb49a5529d46b42&v=4",
         "amount": 58.67,
         "is_public": true
     },
@@ -3309,6 +3309,15 @@
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/8379144?v=4",
         "amount": 100,
+        "is_public": true
+    },
+    {
+        "login": "vSkilled",
+        "url": "https://github.com/vSkilled",
+        "name": "Karl Nyen",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/13783455?u=8fce4c9a9b336c2535ae3c6c6ea440c17079275b&v=4",
+        "amount": 5,
         "is_public": true
     },
     {
