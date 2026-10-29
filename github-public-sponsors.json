@@ -792,6 +792,15 @@
         "is_public": true
     },
     {
+        "login": "eltonchung",
+        "url": "https://github.com/eltonchung",
+        "name": "Elton",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/14343633?u=a2c984006393dc9fa4d423b22fbf339ab226a051&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
         "login": "epsilonpsek",
         "url": "https://github.com/epsilonpsek",
         "name": "Epsilon PS eK",
