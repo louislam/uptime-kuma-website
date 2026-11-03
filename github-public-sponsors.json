@@ -477,6 +477,15 @@
         "is_public": true
     },
     {
+        "login": "Cimlah",
+        "url": "https://github.com/Cimlah",
+        "name": "Michał Stolarczyk",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/28655852?u=ead1bcc99cae31ede29b4d63e11e3401d0df173d&v=4",
+        "amount": 1.94,
+        "is_public": true
+    },
+    {
         "login": "cirrusflyer",
         "url": "https://github.com/cirrusflyer",
         "name": "cirrusflyer",
@@ -635,7 +644,7 @@
         "name": "Delta One",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/67871016?v=4",
-        "amount": 125,
+        "amount": 130,
         "is_public": true
     },
     {
