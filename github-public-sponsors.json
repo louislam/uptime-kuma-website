@@ -3312,6 +3312,15 @@
         "is_public": true
     },
     {
+        "login": "VIVOMEDIA",
+        "url": "https://github.com/VIVOMEDIA",
+        "name": "VIVOMEDIA",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/36041525?v=4",
+        "amount": 10,
+        "is_public": true
+    },
+    {
         "login": "vladimiroff",
         "url": "https://github.com/vladimiroff",
         "name": "Kiril Vladimirov",
