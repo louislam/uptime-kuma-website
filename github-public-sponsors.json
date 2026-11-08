@@ -2655,6 +2655,15 @@
         "is_public": true
     },
     {
+        "login": "rohan-giri",
+        "url": "https://github.com/rohan-giri",
+        "name": "Rohan Giri",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/91136047?u=64838acb8e54f02ac85d1098e7dd0cfe6c97e3c6&v=4",
+        "amount": 3,
+        "is_public": true
+    },
+    {
         "login": "roivanov",
         "url": "https://github.com/roivanov",
         "name": "Roman Ivanov",
