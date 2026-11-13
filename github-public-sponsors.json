@@ -495,6 +495,15 @@
         "is_public": true
     },
     {
+        "login": "clarkkristofor",
+        "url": "https://github.com/clarkkristofor",
+        "name": "Clark",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/5372356?v=4",
+        "amount": 10,
+        "is_public": true
+    },
+    {
         "login": "clayoster",
         "url": "https://github.com/clayoster",
         "name": "Clay Oster",
@@ -2345,6 +2354,15 @@
         "name": "노민영",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/85818940?u=47ab613ba66b94689ca5949a76b45c8d427fceb8&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
+        "login": "nogames23",
+        "url": "https://github.com/nogames23",
+        "name": "nogames23",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/161031514?v=4",
         "amount": 5,
         "is_public": true
     },
