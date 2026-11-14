@@ -2412,6 +2412,15 @@
         "is_public": true
     },
     {
+        "login": "OrsonYT",
+        "url": "https://github.com/OrsonYT",
+        "name": "Orson",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/168805784?u=afdffd229173edb493000ba8cc32f85810b5c9eb&v=4",
+        "amount": 5,
+        "is_public": true
+    },
+    {
         "login": "oscoDOTblog",
         "url": "https://github.com/oscoDOTblog",
         "name": "Osco",
@@ -3406,7 +3415,7 @@
         "url": "https://github.com/webartifex",
         "name": "Alexander Hess",
         "currency": "USD",
-        "image": "https://avatars.githubusercontent.com/u/4764725?u=22d4d0330eaa7bb8d1a108f59fac1d49e551cb91&v=4",
+        "image": "https://avatars.githubusercontent.com/u/4764725?u=bd43ef33e6dc20991237b5e543c659ec1813db61&v=4",
         "amount": 5,
         "is_public": true
     },
