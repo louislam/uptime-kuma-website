@@ -437,7 +437,7 @@
         "name": "Certible",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/34693791?v=4",
-        "amount": 175.67,
+        "amount": 180.67,
         "is_public": true
     },
     {
@@ -909,6 +909,15 @@
         "is_public": true
     },
     {
+        "login": "frank-f5w",
+        "url": "https://github.com/frank-f5w",
+        "name": "Frank",
+        "currency": "USD",
+        "image": "https://avatars.githubusercontent.com/u/19557911?u=bf625a415132d2291e4e5ae7062fb837d4126cd6&v=4",
+        "amount": 50,
+        "is_public": true
+    },
+    {
         "login": "frankdez93",
         "url": "https://github.com/frankdez93",
         "name": "frankdez93",
@@ -1266,6 +1275,15 @@
         "currency": "USD",
         "image": "",
         "amount": 56,
+        "is_public": false
+    },
+    {
+        "login": "hidden-abfa85d932064eda7135",
+        "url": "https://github.com/louislam/uptime-kuma",
+        "name": "Guest",
+        "currency": "USD",
+        "image": "",
+        "amount": 10,
         "is_public": false
     },
     {
