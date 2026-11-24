@@ -392,7 +392,7 @@
         "name": "bwrst",
         "currency": "USD",
         "image": "https://avatars.githubusercontent.com/u/17462823?u=aa56f6e464d02186ebb2b1505588eee6f8df9a11&v=4",
-        "amount": 95,
+        "amount": 100,
         "is_public": true
     },
     {
@@ -1292,7 +1292,7 @@
         "name": "Guest",
         "currency": "USD",
         "image": "",
-        "amount": 123,
+        "amount": 126,
         "is_public": false
     },
     {
